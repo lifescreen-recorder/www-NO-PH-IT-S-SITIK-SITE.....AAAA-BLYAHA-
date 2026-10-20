@@ -1,0 +1,642 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="LifeScreen — Швидкий рекордер екрану та ігор нового покоління">
+  <header class="header">
+    <div class="container header-content">
+      <div class="logo">
+        <img src="/icon.png" alt="LifeScreen Logo" class="logo-img" />
+        <span class="logo-text">LifeScreen</span>
+        <span class="badge">v0.1.0-alpha</span>
+      </div>
+      <nav class="nav">
+        <a href="#features">Особливості</a>
+        <a href="#compare">Порівняння</a>
+        <a href="#download" class="nav-download">Завантажити</a>
+        <a href="https://github.com/lifescreen-recorder/Code" target="_blank" rel="noopener" class="github-link">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-content">
+        <img src="/icon.png" alt="LifeScreen Mascot" class="hero-icon" />
+        <h1 class="hero-title">Швидкий та легкий рекордер екрану для ігор і робочого столу</h1>
+        <p class="hero-desc">
+          Створений на Zig та C з апаратним Zero-Copy GPU захопленням. Максимальна продуктивність, підтримка апаратного AV1, Windows 11 HDR та наднизьке навантаження на систему.
+        </p>
+        <div class="hero-buttons">
+          <a href="#download" class="btn btn-primary">Завантажити для Windows</a>
+          <a href="#compare" class="btn btn-secondary">Чому LifeScreen?</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="container">
+        <h2 class="section-title">Головні технології</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Zero-Copy GPU захоплення</h3>
+            <p>Пряме перехоплення кадрів через DirectX 11/12 SwapChain та DXGI Desktop Duplication без додаткових копіювань пам'яті GPU-CPU.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🎬</div>
+            <h3>Апаратне прискорення AV1</h3>
+            <p>Автоматичний вибір апаратного енкодера нового покоління (NVENC, Intel QSV, AMD AMF) з максимальною якістю при малому розмірі файлу.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🌈</div>
+            <h3>Windows 11 HDR & WCG</h3>
+            <p>Підтримка 10-бітного та 16-бітного кольору Wide Color Gamut через IDXGIOutput5 DuplicateOutput1 без спотворення кольорів.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">💾</div>
+            <h3>Direct NVMe I/O (256 KB)</h3>
+            <p>Оптимізований запис вирівняними блоками 256 КБ на високошвидкісні SSD, що виключає мікрофрізи та втрату кадрів у CS2 та інших іграх.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🪶</div>
+            <h3>Всього ~40 МБ оперативної пам'яті</h3>
+            <p>Написаний на Zig та чистому C, без важких веб-оболонок і без Electron. Чистий інтерфейс Dear ImGui з миттєвим відгуком.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🛡️</div>
+            <h3>Стійкість до збоїв</h3>
+            <p>Запис у формат MKV захищає записане відео від пошкодження навіть при раптовому вимкненні комп'ютера або завершенні гри.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="compare" class="section section-dark">
+      <div class="container">
+        <h2 class="section-title">Порівняння з іншими програмами для запису</h2>
+        <p class="section-subtitle">Чим LifeScreen відрізняється від відомих програм для запису екрану</p>
+
+        <div class="table-container">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>Характеристика</th>
+                <th class="col-highlight">LifeScreen</th>
+                <th>OBS Studio</th>
+                <th>Action! (Mirillis)</th>
+                <th>Bandicam</th>
+                <th>ShadowPlay</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="feature-name">Мова розробки та ядро</td>
+                <td class="col-highlight highlight-text">Zig + C (Нативне ядро)</td>
+                <td>C++ (Модульне ядро)</td>
+                <td>C++ / C#</td>
+                <td>C++</td>
+                <td>C++ (Драйвер)</td>
+              </tr>
+              <tr>
+                <td class="feature-name">Споживання пам'яті (RAM)</td>
+                <td class="col-highlight highlight-text">~35 – 45 МБ</td>
+                <td>250 – 450 МБ</td>
+                <td>120 – 180 МБ</td>
+                <td>80 – 120 МБ</td>
+                <td>100 – 150 МБ</td>
+              </tr>
+              <tr>
+                <td class="feature-name">Вплив на FPS в іграх</td>
+                <td class="col-highlight highlight-text">0 – 1% (4-рівневий буфер)</td>
+                <td>5 – 15%</td>
+                <td>2 – 5%</td>
+                <td>5 – 10%</td>
+                <td>1 – 3%</td>
+              </tr>
+              <tr>
+                <td class="feature-name">Апаратний AV1 (2026)</td>
+                <td class="col-highlight highlight-text">Автоматичний пріоритет</td>
+                <td>Потребує ручного вибору</td>
+                <td>Обмежено</td>
+                <td>Обмежено</td>
+                <td>Тільки RTX 40/50</td>
+              </tr>
+              <tr>
+                <td class="feature-name">Windows 11 HDR (10/16-bit)</td>
+                <td class="col-highlight highlight-text">Так (DXGI 1.5)</td>
+                <td>Через розширені опції</td>
+                <td>Так</td>
+                <td>Ні</td>
+                <td>Так</td>
+              </tr>
+              <tr>
+                <td class="feature-name">Прямий буфер NVMe (256 KB)</td>
+                <td class="col-highlight highlight-text">Так (Без затримок диска)</td>
+                <td>Стандартний I/O</td>
+                <td>Стандартний I/O</td>
+                <td>Стандартний I/O</td>
+                <td>Стандартний I/O</td>
+              </tr>
+              <tr>
+                <td class="feature-name">Підтримка DirectX 11 та 12</td>
+                <td class="col-highlight highlight-text">Так (Автовизначення)</td>
+                <td>Так</td>
+                <td>Так</td>
+                <td>Так</td>
+                <td>Так</td>
+              </tr>
+              <tr>
+                <td class="feature-name">Платформи</td>
+                <td class="col-highlight highlight-text">Windows, Linux, macOS</td>
+                <td>Windows, Linux, macOS</td>
+                <td>Тільки Windows</td>
+                <td>Тільки Windows</td>
+                <td>Тільки Windows (NVIDIA)</td>
+              </tr>
+              <tr>
+                <td class="feature-name">Ціна та ліцензія</td>
+                <td class="col-highlight highlight-text">Безкоштовно (GPL-3.0)</td>
+                <td>Безкоштовно (GPL-2.0)</td>
+                <td>Платно (~$30)</td>
+                <td>Платно (~$40)</td>
+                <td>Потребує карту NVIDIA</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="download" class="section">
+      <div class="container">
+        <h2 class="section-title">Завантаження</h2>
+        <p class="section-subtitle">Оберіть варіант встановлення для вашої операційної системи</p>
+
+        <div class="download-grid">
+          <div class="download-card featured">
+            <div class="os-header">
+              <span class="os-icon">🪟</span>
+              <div>
+                <h3>Windows</h3>
+                <span class="os-sub">Windows 10 / 11 (64-bit)</span>
+              </div>
+            </div>
+            <p class="os-desc">Повна підтримка DirectX 11/12, HDR, WASAPI аудіо та AV1.</p>
+            <div class="dl-buttons">
+              <a href="https://github.com/lifescreen-recorder/Code/releases/latest/download/lifescreen-windows-x64-installer.exe" class="btn btn-primary btn-block">
+                Встановлювач (.exe)
+              </a>
+              <a href="https://github.com/lifescreen-recorder/Code/releases/latest/download/lifescreen-windows-x64-portable.zip" class="btn btn-outline btn-block">
+                Портативна версія (.zip)
+              </a>
+            </div>
+          </div>
+
+          <div class="download-card">
+            <div class="os-header">
+              <span class="os-icon">🐧</span>
+              <div>
+                <h3>Linux</h3>
+                <span class="os-sub">x86_64</span>
+              </div>
+            </div>
+            <p class="os-desc">Пакети для дистрибутивів Ubuntu, Debian, Fedora, Arch та інших.</p>
+            <div class="dl-buttons">
+              <a href="https://github.com/lifescreen-recorder/Code/releases/latest/download/lifescreen-linux-x64.deb" class="btn btn-secondary btn-block">
+                Пакет .deb (Ubuntu/Debian)
+              </a>
+              <a href="https://github.com/lifescreen-recorder/Code/releases/latest/download/lifescreen-linux-x64.rpm" class="btn btn-outline btn-block">
+                Пакет .rpm (Fedora/RHEL)
+              </a>
+              <a href="https://github.com/lifescreen-recorder/Code/releases/latest/download/lifescreen-linux-x64.tar.gz" class="btn btn-outline btn-block">
+                Портативний .tar.gz
+              </a>
+            </div>
+          </div>
+
+          <div class="download-card">
+            <div class="os-header">
+              <span class="os-icon">🍏</span>
+              <div>
+                <h3>macOS</h3>
+                <span class="os-sub">Apple Silicon (M1/M2/M3/M4)</span>
+              </div>
+            </div>
+            <p class="os-desc">Нативна збірка на базі ScreenCaptureKit та Metal.</p>
+            <div class="dl-buttons">
+              <a href="https://github.com/lifescreen-recorder/Code/releases/latest/download/lifescreen-macos-arm64.tar.gz" class="btn btn-secondary btn-block">
+                Архів .tar.gz (ARM64)
+              </a>
+              <a href="https://github.com/lifescreen-recorder/Code/releases/latest" class="btn btn-outline btn-block">
+                Всі релізи GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="checksums-note">
+          <p>
+            Усі офіційні бінарні файли підписані сертифікатом видавця <strong>Baneronetwo (BANSAFAn)</strong>. Контрольні суми SHA-256 доступні у файлі 
+            <a href="https://github.com/lifescreen-recorder/Code/releases/latest/download/sha256_checksums.txt" target="_blank" rel="noopener">sha256_checksums.txt</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-left">
+        <span class="footer-logo">LifeScreen Recorder</span>
+        <span class="footer-copy">© 2026 Baneronetwo (BANSAFAn). Ліцензія GNU GPLv3.</span>
+      </div>
+      <div class="footer-right">
+        <a href="https://github.com/lifescreen-recorder/Code" target="_blank" rel="noopener">GitHub Репозиторій</a>
+        <a href="https://github.com/lifescreen-recorder/Code/issues" target="_blank" rel="noopener">Повідомити про помилку</a>
+      </div>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  .container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .header {
+    background-color: #0f131a;
+    border-bottom: 1px solid #1e2633;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+  }
+
+  .logo-text {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #f8fafc;
+  }
+
+  .badge {
+    background-color: #1e293b;
+    color: #38bdf8;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    border: 1px solid #0284c7;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 0.95rem;
+  }
+
+  .nav a:hover {
+    color: #38bdf8;
+  }
+
+  .nav-download {
+    color: #38bdf8;
+    font-weight: 600;
+  }
+
+  .github-link {
+    background-color: #1e2633;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    transition: background 0.15s;
+  }
+
+  .github-link:hover {
+    background-color: #2b3648;
+  }
+
+  .hero {
+    padding: 64px 0 48px;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 760px;
+  }
+
+  .hero-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 30px rgba(14, 165, 233, 0.2);
+  }
+
+  .hero-title {
+    font-size: 2.3rem;
+    font-weight: 800;
+    line-height: 1.25;
+    color: #f8fafc;
+    margin-bottom: 16px;
+  }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    color: #94a3b8;
+    margin-bottom: 32px;
+  }
+
+  .hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .btn-primary {
+    background-color: #0284c7;
+    color: #ffffff;
+  }
+
+  .btn-primary:hover {
+    background-color: #0369a1;
+  }
+
+  .btn-secondary {
+    background-color: #1e2633;
+    color: #f1f5f9;
+  }
+
+  .btn-secondary:hover {
+    background-color: #283344;
+  }
+
+  .btn-outline {
+    background-color: transparent;
+    border: 1px solid #334155;
+    color: #cbd5e1;
+  }
+
+  .btn-outline:hover {
+    border-color: #64748b;
+    background-color: #1e2633;
+  }
+
+  .btn-block {
+    display: block;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .section {
+    padding: 56px 0;
+  }
+
+  .section-dark {
+    background-color: #080a0f;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-align: center;
+    color: #f8fafc;
+    margin-bottom: 8px;
+  }
+
+  .section-subtitle {
+    text-align: center;
+    color: #94a3b8;
+    margin-bottom: 40px;
+    font-size: 1rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    margin-top: 32px;
+  }
+
+  .feature-card {
+    background-color: #11151e;
+    border: 1px solid #1e2633;
+    border-radius: 10px;
+    padding: 24px;
+  }
+
+  .feature-icon {
+    font-size: 1.75rem;
+    margin-bottom: 12px;
+  }
+
+  .feature-card h3 {
+    font-size: 1.15rem;
+    color: #f1f5f9;
+    margin-bottom: 8px;
+  }
+
+  .feature-card p {
+    font-size: 0.925rem;
+    color: #94a3b8;
+  }
+
+  .table-container {
+    overflow-x: auto;
+    margin-top: 24px;
+    border: 1px solid #1e2633;
+    border-radius: 10px;
+    background-color: #0f131a;
+  }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.9rem;
+  }
+
+  .compare-table th,
+  .compare-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid #1e2633;
+  }
+
+  .compare-table th {
+    background-color: #141a24;
+    color: #cbd5e1;
+    font-weight: 600;
+  }
+
+  .feature-name {
+    font-weight: 600;
+    color: #e2e8f0;
+  }
+
+  .col-highlight {
+    background-color: rgba(2, 132, 199, 0.08);
+  }
+
+  .highlight-text {
+    color: #38bdf8;
+    font-weight: 600;
+  }
+
+  .download-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  .download-card {
+    background-color: #11151e;
+    border: 1px solid #1e2633;
+    border-radius: 12px;
+    padding: 28px;
+  }
+
+  .download-card.featured {
+    border-color: #0284c7;
+    box-shadow: 0 0 20px rgba(2, 132, 199, 0.15);
+  }
+
+  .os-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+
+  .os-icon {
+    font-size: 2rem;
+  }
+
+  .os-header h3 {
+    font-size: 1.25rem;
+    color: #f8fafc;
+  }
+
+  .os-sub {
+    font-size: 0.8rem;
+    color: #94a3b8;
+  }
+
+  .os-desc {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    margin-bottom: 24px;
+    min-height: 40px;
+  }
+
+  .dl-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .checksums-note {
+    margin-top: 36px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #64748b;
+  }
+
+  .checksums-note a {
+    color: #38bdf8;
+    text-decoration: underline;
+  }
+
+  .footer {
+    background-color: #07090e;
+    border-top: 1px solid #1e2633;
+    padding: 32px 0;
+    margin-top: 48px;
+    font-size: 0.875rem;
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .footer-logo {
+    font-weight: 700;
+    color: #f1f5f9;
+  }
+
+  .footer-copy {
+    color: #64748b;
+  }
+
+  .footer-right {
+    display: flex;
+    gap: 20px;
+    color: #94a3b8;
+  }
+
+  .footer-right a:hover {
+    color: #38bdf8;
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 1.8rem;
+    }
+
+    .nav {
+      gap: 12px;
+    }
+
+    .footer-content {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
