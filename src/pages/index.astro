@@ -14,7 +14,12 @@ import Layout from '../layouts/Layout.astro';
         <a href="#features">Особливості</a>
         <a href="#compare">Порівняння</a>
         <a href="#download" class="nav-download">Завантажити</a>
-        <a href="https://github.com/lifescreen-recorder/Code" target="_blank" rel="noopener" class="github-link">GitHub</a>
+        <a href="https://github.com/lifescreen-recorder/Code" target="_blank" rel="noopener" class="github-link">
+          <svg class="icon-inline" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          GitHub
+        </a>
       </nav>
     </div>
   </header>
@@ -27,9 +32,25 @@ import Layout from '../layouts/Layout.astro';
         <p class="hero-desc">
           Створений на Zig та C з апаратним Zero-Copy GPU захопленням. Максимальна продуктивність, підтримка апаратного AV1, Windows 11 HDR та наднизьке навантаження на систему.
         </p>
-        <div class="hero-buttons">
-          <a href="#download" class="btn btn-primary">Завантажити для Windows</a>
-          <a href="#compare" class="btn btn-secondary">Чому LifeScreen?</a>
+
+        <div id="recommended-box" class="recommended-box hidden">
+          <div class="recommended-badge">
+            <svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Рекомендовано для вашої системи: <span id="detected-os-name">Windows</span>
+          </div>
+          <div class="recommended-actions">
+            <a id="recommended-btn" href="https://github.com/lifescreen-recorder/Code/releases/latest/download/lifescreen-windows-x64-installer.exe" class="btn btn-primary btn-large">
+              Завантажити LifeScreen
+            </a>
+            <a href="#download" class="btn btn-secondary">Всі версії</a>
+          </div>
+        </div>
+
+        <div class="hero-buttons" id="default-hero-buttons">
+          <a href="#download" class="btn btn-primary">Завантажити програму</a>
+          <a href="#compare" class="btn btn-secondary">Порівняти з іншими</a>
         </div>
       </div>
     </section>
@@ -39,37 +60,61 @@ import Layout from '../layouts/Layout.astro';
         <h2 class="section-title">Головні технології</h2>
         <div class="features-grid">
           <div class="feature-card">
-            <div class="feature-icon">⚡</div>
+            <div class="feature-icon-wrapper">
+              <svg class="feature-svg" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+              </svg>
+            </div>
             <h3>Zero-Copy GPU захоплення</h3>
             <p>Пряме перехоплення кадрів через DirectX 11/12 SwapChain та DXGI Desktop Duplication без додаткових копіювань пам'яті GPU-CPU.</p>
           </div>
 
           <div class="feature-card">
-            <div class="feature-icon">🎬</div>
+            <div class="feature-icon-wrapper">
+              <svg class="feature-svg" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
+              </svg>
+            </div>
             <h3>Апаратне прискорення AV1</h3>
             <p>Автоматичний вибір апаратного енкодера нового покоління (NVENC, Intel QSV, AMD AMF) з максимальною якістю при малому розмірі файлу.</p>
           </div>
 
           <div class="feature-card">
-            <div class="feature-icon">🌈</div>
+            <div class="feature-icon-wrapper">
+              <svg class="feature-svg" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0H3" />
+              </svg>
+            </div>
             <h3>Windows 11 HDR & WCG</h3>
             <p>Підтримка 10-бітного та 16-бітного кольору Wide Color Gamut через IDXGIOutput5 DuplicateOutput1 без спотворення кольорів.</p>
           </div>
 
           <div class="feature-card">
-            <div class="feature-icon">💾</div>
+            <div class="feature-icon-wrapper">
+              <svg class="feature-svg" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 5.625c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125m16.5 5.625c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+              </svg>
+            </div>
             <h3>Direct NVMe I/O (256 KB)</h3>
             <p>Оптимізований запис вирівняними блоками 256 КБ на високошвидкісні SSD, що виключає мікрофрізи та втрату кадрів у CS2 та інших іграх.</p>
           </div>
 
           <div class="feature-card">
-            <div class="feature-icon">🪶</div>
+            <div class="feature-icon-wrapper">
+              <svg class="feature-svg" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25zm.75-12h9a.75.75 0 01.75.75v9a.75.75 0 01-.75.75h-9a.75.75 0 01-.75-.75v-9a.75.75 0 01.75-.75z" />
+              </svg>
+            </div>
             <h3>Всього ~40 МБ оперативної пам'яті</h3>
             <p>Написаний на Zig та чистому C, без важких веб-оболонок і без Electron. Чистий інтерфейс Dear ImGui з миттєвим відгуком.</p>
           </div>
 
           <div class="feature-card">
-            <div class="feature-icon">🛡️</div>
+            <div class="feature-icon-wrapper">
+              <svg class="feature-svg" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+              </svg>
+            </div>
             <h3>Стійкість до збоїв</h3>
             <p>Запис у формат MKV захищає записане відео від пошкодження навіть при раптовому вимкненні комп'ютера або завершенні гри.</p>
           </div>
@@ -80,18 +125,79 @@ import Layout from '../layouts/Layout.astro';
     <section id="compare" class="section section-dark">
       <div class="container">
         <h2 class="section-title">Порівняння з іншими програмами для запису</h2>
-        <p class="section-subtitle">Чим LifeScreen відрізняється від відомих програм для запису екрану</p>
+        <p class="section-subtitle">Чим LifeScreen відрізняється від інших популярних програм</p>
 
         <div class="table-container">
           <table class="compare-table">
             <thead>
               <tr>
-                <th>Характеристика</th>
-                <th class="col-highlight">LifeScreen</th>
-                <th>OBS Studio</th>
-                <th>Action! (Mirillis)</th>
-                <th>Bandicam</th>
-                <th>ShadowPlay</th>
+                <th class="col-feature-header">Програма</th>
+                <th class="col-highlight">
+                  <div class="th-app">
+                    <img src="/icon.png" alt="LifeScreen" class="th-logo" />
+                    <span>LifeScreen</span>
+                  </div>
+                </th>
+                <th>
+                  <a href="https://obsproject.com" target="_blank" rel="noopener" class="th-link">
+                    <div class="th-app">
+                      <svg class="th-svg" viewBox="0 0 24 24" fill="#f8fafc">
+                        <circle cx="12" cy="12" r="10" fill="#1e293b"/>
+                        <path d="M12 6a6 6 0 00-6 6c0 1.9.9 3.6 2.3 4.7L9.8 15a4 4 0 01-1.8-3c0-2.2 1.8-4 4-4s4 1.8 4 4a4 4 0 01-1.8 3l1.5 1.7A6 6 0 0018 12a6 6 0 00-6-6z" fill="#38bdf8"/>
+                      </svg>
+                      <span>OBS Studio</span>
+                      <svg class="icon-ext" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/>
+                        <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/>
+                      </svg>
+                    </div>
+                  </a>
+                </th>
+                <th>
+                  <a href="https://mirillis.com/action" target="_blank" rel="noopener" class="th-link">
+                    <div class="th-app">
+                      <svg class="th-svg" viewBox="0 0 24 24" fill="#22c55e">
+                        <circle cx="12" cy="12" r="10" fill="#14532d"/>
+                        <polygon points="9.5,7.5 16.5,12 9.5,16.5" fill="#22c55e"/>
+                      </svg>
+                      <span>Action!</span>
+                      <svg class="icon-ext" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/>
+                        <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/>
+                      </svg>
+                    </div>
+                  </a>
+                </th>
+                <th>
+                  <a href="https://www.bandicam.com" target="_blank" rel="noopener" class="th-link">
+                    <div class="th-app">
+                      <svg class="th-svg" viewBox="0 0 24 24" fill="#06b6d4">
+                        <rect x="2" y="4" width="20" height="16" rx="4" fill="#083344"/>
+                        <circle cx="12" cy="12" r="4" fill="#06b6d4"/>
+                      </svg>
+                      <span>Bandicam</span>
+                      <svg class="icon-ext" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/>
+                        <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/>
+                      </svg>
+                    </div>
+                  </a>
+                </th>
+                <th>
+                  <a href="https://www.nvidia.com/geforce/technologies/shadowplay/" target="_blank" rel="noopener" class="th-link">
+                    <div class="th-app">
+                      <svg class="th-svg" viewBox="0 0 24 24" fill="#16a34a">
+                        <path d="M3 7l9-4 9 4v10l-9 4-9-4V7z" fill="#052e16"/>
+                        <path d="M7 10l5-2 5 2v4l-5 2-5-2v-4z" fill="#22c55e"/>
+                      </svg>
+                      <span>ShadowPlay</span>
+                      <svg class="icon-ext" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/>
+                        <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/>
+                      </svg>
+                    </div>
+                  </a>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -113,7 +219,7 @@ import Layout from '../layouts/Layout.astro';
               </tr>
               <tr>
                 <td class="feature-name">Вплив на FPS в іграх</td>
-                <td class="col-highlight highlight-text">0 – 1% (4-рівневий буфер)</td>
+                <td class="col-highlight highlight-text">0 – 1% (4-ступінчастий буфер)</td>
                 <td>5 – 15%</td>
                 <td>2 – 5%</td>
                 <td>5 – 10%</td>
@@ -129,7 +235,7 @@ import Layout from '../layouts/Layout.astro';
               </tr>
               <tr>
                 <td class="feature-name">Windows 11 HDR (10/16-bit)</td>
-                <td class="col-highlight highlight-text">Так (DXGI 1.5)</td>
+                <td class="col-highlight highlight-text">Так (DXGI 1.5 DuplicateOutput1)</td>
                 <td>Через розширені опції</td>
                 <td>Так</td>
                 <td>Ні</td>
@@ -137,7 +243,7 @@ import Layout from '../layouts/Layout.astro';
               </tr>
               <tr>
                 <td class="feature-name">Прямий буфер NVMe (256 KB)</td>
-                <td class="col-highlight highlight-text">Так (Без затримок диска)</td>
+                <td class="col-highlight highlight-text">Так (Вирівняні блоки без фрізів)</td>
                 <td>Стандартний I/O</td>
                 <td>Стандартний I/O</td>
                 <td>Стандартний I/O</td>
@@ -175,19 +281,24 @@ import Layout from '../layouts/Layout.astro';
 
     <section id="download" class="section">
       <div class="container">
-        <h2 class="section-title">Завантаження</h2>
-        <p class="section-subtitle">Оберіть варіант встановлення для вашої операційної системи</p>
+        <h2 class="section-title">Вибір завантаження</h2>
+        <p class="section-subtitle">Оберіть відповідний пакет для вашої платформи</p>
 
         <div class="download-grid">
-          <div class="download-card featured">
+          <div class="download-card" id="card-windows">
+            <div class="card-badge" id="badge-windows"></div>
             <div class="os-header">
-              <span class="os-icon">🪟</span>
+              <div class="os-svg-wrapper">
+                <svg viewBox="0 0 24 24" fill="#0284c7" class="os-svg">
+                  <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+                </svg>
+              </div>
               <div>
                 <h3>Windows</h3>
                 <span class="os-sub">Windows 10 / 11 (64-bit)</span>
               </div>
             </div>
-            <p class="os-desc">Повна підтримка DirectX 11/12, HDR, WASAPI аудіо та AV1.</p>
+            <p class="os-desc">Повна підтримка DirectX 11/12, HDR, WASAPI аудіо та апаратного AV1.</p>
             <div class="dl-buttons">
               <a href="https://github.com/lifescreen-recorder/Code/releases/latest/download/lifescreen-windows-x64-installer.exe" class="btn btn-primary btn-block">
                 Встановлювач (.exe)
@@ -198,15 +309,20 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </div>
 
-          <div class="download-card">
+          <div class="download-card" id="card-linux">
+            <div class="card-badge" id="badge-linux"></div>
             <div class="os-header">
-              <span class="os-icon">🐧</span>
+              <div class="os-svg-wrapper">
+                <svg viewBox="0 0 24 24" fill="#f59e0b" class="os-svg">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/>
+                </svg>
+              </div>
               <div>
                 <h3>Linux</h3>
                 <span class="os-sub">x86_64</span>
               </div>
             </div>
-            <p class="os-desc">Пакети для дистрибутивів Ubuntu, Debian, Fedora, Arch та інших.</p>
+            <p class="os-desc">Пакети для дистрибутивів Ubuntu, Debian, Fedora, Arch та openSUSE.</p>
             <div class="dl-buttons">
               <a href="https://github.com/lifescreen-recorder/Code/releases/latest/download/lifescreen-linux-x64.deb" class="btn btn-secondary btn-block">
                 Пакет .deb (Ubuntu/Debian)
@@ -220,9 +336,14 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </div>
 
-          <div class="download-card">
+          <div class="download-card" id="card-macos">
+            <div class="card-badge" id="badge-macos"></div>
             <div class="os-header">
-              <span class="os-icon">🍏</span>
+              <div class="os-svg-wrapper">
+                <svg viewBox="0 0 24 24" fill="#cbd5e1" class="os-svg">
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.85c.66-.82 1.11-1.96.99-3.1-.96.04-2.11.64-2.79 1.44-.59.69-1.12 1.83-.98 2.94 1.07.08 2.12-.54 2.78-1.28z"/>
+                </svg>
+              </div>
               <div>
                 <h3>macOS</h3>
                 <span class="os-sub">Apple Silicon (M1/M2/M3/M4)</span>
@@ -262,11 +383,54 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
   </footer>
+
+  <script is:inline>
+    (function () {
+      const ua = navigator.userAgent.toLowerCase();
+      let detectedOs = 'windows';
+      let osLabel = 'Windows 10/11';
+      let downloadUrl = 'https://github.com/lifescreen-recorder/Code/releases/latest/download/lifescreen-windows-x64-installer.exe';
+      let downloadText = 'Завантажити для Windows (.exe)';
+
+      if (ua.indexOf('mac') !== -1) {
+        detectedOs = 'macos';
+        osLabel = 'macOS (Apple Silicon)';
+        downloadUrl = 'https://github.com/lifescreen-recorder/Code/releases/latest/download/lifescreen-macos-arm64.tar.gz';
+        downloadText = 'Завантажити для macOS (.tar.gz)';
+      } else if (ua.indexOf('linux') !== -1 || ua.indexOf('x11') !== -1) {
+        detectedOs = 'linux';
+        osLabel = 'Linux (x86_64)';
+        downloadUrl = 'https://github.com/lifescreen-recorder/Code/releases/latest/download/lifescreen-linux-x64.deb';
+        downloadText = 'Завантажити пакет .deb (Linux)';
+      }
+
+      const osNameEl = document.getElementById('detected-os-name');
+      const recBtn = document.getElementById('recommended-btn');
+      const recBox = document.getElementById('recommended-box');
+      const defButtons = document.getElementById('default-hero-buttons');
+
+      if (osNameEl && recBtn && recBox && defButtons) {
+        osNameEl.textContent = osLabel;
+        recBtn.href = downloadUrl;
+        recBtn.textContent = downloadText;
+        recBox.classList.remove('hidden');
+        defButtons.classList.add('hidden');
+      }
+
+      const card = document.getElementById('card-' + detectedOs);
+      const badge = document.getElementById('badge-' + detectedOs);
+      if (card && badge) {
+        card.classList.add('featured');
+        badge.textContent = 'Рекомендовано для вашої системи';
+        badge.classList.add('badge-visible');
+      }
+    })();
+  </script>
 </Layout>
 
 <style>
   .container {
-    max-width: 1120px;
+    max-width: 1140px;
     margin: 0 auto;
     padding: 0 20px;
   }
@@ -331,15 +495,24 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     background-color: #1e2633;
     padding: 6px 14px;
     border-radius: 6px;
     font-size: 0.875rem;
-    transition: background 0.15s;
   }
 
   .github-link:hover {
     background-color: #2b3648;
+  }
+
+  .icon-inline {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    vertical-align: middle;
   }
 
   .hero {
@@ -348,12 +521,12 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .hero-content {
-    max-width: 760px;
+    max-width: 800px;
   }
 
   .hero-icon {
-    width: 100px;
-    height: 100px;
+    width: 96px;
+    height: 96px;
     border-radius: 20px;
     margin-bottom: 24px;
     box-shadow: 0 8px 30px rgba(14, 165, 233, 0.2);
@@ -373,11 +546,43 @@ import Layout from '../layouts/Layout.astro';
     margin-bottom: 32px;
   }
 
+  .recommended-box {
+    background: #11151e;
+    border: 1px solid #0284c7;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .recommended-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    color: #38bdf8;
+    font-weight: 600;
+  }
+
+  .recommended-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
   .hero-buttons {
     display: flex;
     justify-content: center;
     gap: 16px;
     flex-wrap: wrap;
+  }
+
+  .hidden {
+    display: none !important;
   }
 
   .btn {
@@ -388,7 +593,11 @@ import Layout from '../layouts/Layout.astro';
     font-weight: 600;
     text-align: center;
     cursor: pointer;
-    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .btn-large {
+    padding: 12px 28px;
+    font-size: 1.05rem;
   }
 
   .btn-primary {
@@ -463,9 +672,20 @@ import Layout from '../layouts/Layout.astro';
     padding: 24px;
   }
 
-  .feature-icon {
-    font-size: 1.75rem;
-    margin-bottom: 12px;
+  .feature-icon-wrapper {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    background-color: rgba(2, 132, 199, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .feature-svg {
+    width: 24px;
+    height: 24px;
   }
 
   .feature-card h3 {
@@ -500,10 +720,51 @@ import Layout from '../layouts/Layout.astro';
     border-bottom: 1px solid #1e2633;
   }
 
-  .compare-table th {
+  .col-feature-header {
     background-color: #141a24;
     color: #cbd5e1;
     font-weight: 600;
+    width: 240px;
+  }
+
+  .th-link {
+    color: #cbd5e1;
+    display: inline-block;
+  }
+
+  .th-link:hover {
+    color: #38bdf8;
+  }
+
+  .th-app {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+  }
+
+  .th-logo {
+    width: 22px;
+    height: 22px;
+    border-radius: 4px;
+  }
+
+  .th-svg {
+    width: 22px;
+    height: 22px;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .icon-ext {
+    width: 14px;
+    height: 14px;
+    opacity: 0.6;
+  }
+
+  .th-link:hover .icon-ext {
+    opacity: 1;
   }
 
   .feature-name {
@@ -531,6 +792,24 @@ import Layout from '../layouts/Layout.astro';
     border: 1px solid #1e2633;
     border-radius: 12px;
     padding: 28px;
+    position: relative;
+  }
+
+  .card-badge {
+    display: none;
+    background-color: #0284c7;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    position: absolute;
+    top: -12px;
+    left: 24px;
+  }
+
+  .card-badge.badge-visible {
+    display: inline-block;
   }
 
   .download-card.featured {
@@ -545,8 +824,17 @@ import Layout from '../layouts/Layout.astro';
     margin-bottom: 12px;
   }
 
-  .os-icon {
-    font-size: 2rem;
+  .os-svg-wrapper {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .os-svg {
+    width: 32px;
+    height: 32px;
   }
 
   .os-header h3 {
